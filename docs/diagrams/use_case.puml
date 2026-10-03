@@ -47,9 +47,9 @@ usecase "смотреть свое\nрасписание" as uc_student_schedule
 
 ' Связи Админа
 admin -- uc_manage_users
-uc_manage_users <|-- uc_add_user
-uc_manage_users <|-- uc_del_user
-uc_manage_users <|-- uc_edit_user
+uc_manage_users <-- uc_add_user
+uc_manage_users <-- uc_del_user
+uc_manage_users <-- uc_edit_user
 
 ' Связи Завуча
 zavuch -- uc_change_schedule
@@ -57,9 +57,9 @@ uc_single_corr .> uc_change_schedule : "extend"\n(Выбран режим "из�
 uc_curriculum_change .> uc_change_schedule : "extend"\n(Выбран режим "Изменить\nрасписание на год")
 
 zavuch -- uc_manage_class_users
-uc_manage_class_users <|-- uc_add_to_class
-uc_manage_class_users <|-- uc_del_from_class
-uc_manage_class_users <|-- uc_change_user_class
+uc_manage_class_users <-- uc_add_to_class
+uc_manage_class_users <-- uc_del_from_class
+uc_manage_class_users <-- uc_change_user_class
 
 ' Связи Классного руководителя
 klass_ruk -- uc_view_own_class
