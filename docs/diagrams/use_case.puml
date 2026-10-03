@@ -21,9 +21,9 @@ usecase "удалить\nпользователя из\nсистемы" as uc_de
 usecase "редактировать\nпользователя в\nсистеме" as uc_edit_user
 
 ' Права для Завуча
-usecase "изменить\nрасписание в целом" as uc_change_schedule
+usecase "изменить\nрасписание" as uc_change_schedule
 usecase "единичная\nкорректировка" as uc_single_corr
-usecase "изменение\nшкольного расписания" as uc_curriculum_change
+usecase "изменение\nшкольного расписания на год" as uc_curriculum_change
 
 usecase "управлять\nпользователями\n(в составе класса)" as uc_manage_class_users
 usecase "добавить\nпользователя в\nсостав класса" as uc_add_to_class
@@ -54,7 +54,7 @@ uc_manage_users <|-- uc_edit_user
 ' Связи Завуча
 zavuch -- uc_change_schedule
 uc_single_corr .> uc_change_schedule : "extend"\n(Выбран режим "изменить\nтолько на этот день")
-uc_curriculum_change .> uc_change_schedule : "extend"\n(Выбран режим "Изменить\nучебный план")
+uc_curriculum_change .> uc_change_schedule : "extend"\n(Выбран режим "Изменить\nрасписание на год")
 
 zavuch -- uc_manage_class_users
 uc_manage_class_users <|-- uc_add_to_class
