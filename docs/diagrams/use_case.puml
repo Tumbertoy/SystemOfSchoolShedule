@@ -1,0 +1,77 @@
+@startuml
+' Настройка стиля, чтобы диаграмма располагалась слева направо
+left to right direction
+
+' Объявление актеров (Actors)
+actor "Админ" as admin
+actor "Завуч" as zavuch
+actor "Классный руководитель" as klass_ruk
+actor "Учитель" as teacher
+actor "Ученик" as student
+
+' Иерархия актеров (Стрелки наследования)
+admin --|> zavuch
+zavuch --|> klass_ruk
+klass_ruk --|> teacher
+
+' Права для Админа
+usecase "управлять\nпользователями\nв системе" as uc_manage_users
+usecase "добавить\nпользователя в\nсистему" as uc_add_user
+usecase "удалить\nпользователя из\nсистемы" as uc_del_user
+usecase "редактировать\nпользователя в\nсистеме" as uc_edit_user
+
+' Права для Завуча
+usecase "изменить\nрасписание в целом" as uc_change_schedule
+usecase "единичная\nкорректировка" as uc_single_corr
+usecase "изменение\nшкольного расписания" as uc_curriculum_change
+
+usecase "управлять\nпользователями\n(в составе класса)" as uc_manage_class_users
+usecase "добавить\nпользователя в\nсостав класса" as uc_add_to_class
+usecase "удалить\nпользователя из\nсостава класса" as uc_del_from_class
+usecase "изменять класс\nпользователя" as uc_change_user_class
+
+' Права для Классного руководителя
+usecase "посмотреть\nсостав своего\nкласса" as uc_view_own_class
+usecase "добавить\nпользователя в\nсостав своего класса" as uc_add_to_own_class
+usecase "удалить\nпользователя из\nсостава своего\nкласса" as uc_del_from_own_class
+
+' Права для Учителя
+usecase "просмотреть\nсвое расписание" as uc_view_schedule
+usecase "просмотреть\nрасписание\nклассов" as uc_view_class_schedule
+usecase "просмотр\nаналитики своих\nрабочих часов" as uc_view_analytics
+
+' Права для Ученика
+usecase "смотреть свое\nрасписание" as uc_student_schedule
+
+' --- СВЯЗИ И СТРЕЛКИ ---
+
+' Связи Админа
+admin -- uc_manage_users
+uc_manage_users <|-- uc_add_user
+uc_manage_users <|-- uc_del_user
+uc_manage_users <|-- uc_edit_user
+
+' Связи Завуча
+zavuch -- uc_change_schedule
+uc_single_corr .> uc_change_schedule : "extend"\n(Выбран режим "изменить\nтолько на этот день")
+uc_curriculum_change .> uc_change_schedule : "extend"\n(Выбран режим "Изменить\nучебный план")
+
+zavuch -- uc_manage_class_users
+uc_manage_class_users <|-- uc_add_to_class
+uc_manage_class_users <|-- uc_del_from_class
+uc_manage_class_users <|-- uc_change_user_class
+
+' Связи Классного руководителя
+klass_ruk -- uc_view_own_class
+uc_add_to_own_class .> uc_view_own_class : "extend"
+uc_del_from_own_class .> uc_view_own_class : "extend"
+
+' Связи Учителя
+teacher -- uc_view_schedule
+uc_view_class_schedule .> uc_view_schedule : "extend"
+teacher -- uc_view_analytics
+
+' Связи Ученика
+student -- uc_student_schedule
+
+@enduml
