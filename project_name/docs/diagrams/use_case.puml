@@ -15,7 +15,7 @@ zavuch --|> klass_ruk
 klass_ruk --|> teacher
 
 ' Права для Админа
-usecase "управлять\nпользователями\nв системе" as uc_manage_users
+
 usecase "добавить\nпользователя в\nсистему" as uc_add_user
 usecase "удалить\nпользователя из\nсистемы" as uc_del_user
 usecase "редактировать\nпользователя в\nсистеме" as uc_edit_user
@@ -25,7 +25,6 @@ usecase "изменить\nрасписание" as uc_change_schedule
 usecase "единичная\nкорректировка" as uc_single_corr
 usecase "изменение\nшкольного расписания на год" as uc_curriculum_change
 
-usecase "управлять\nпользователями\n(в составе класса)" as uc_manage_class_users
 usecase "добавить\nпользователя в\nсостав класса" as uc_add_to_class
 usecase "удалить\nпользователя из\nсостава класса" as uc_del_from_class
 usecase "изменять класс\nпользователя" as uc_change_user_class
@@ -46,20 +45,19 @@ usecase "смотреть свое\nрасписание" as uc_student_schedule
 ' --- СВЯЗИ И СТРЕЛКИ ---
 
 ' Связи Админа
-admin -- uc_manage_users
-uc_manage_users <-- uc_add_user
-uc_manage_users <-- uc_del_user
-uc_manage_users <-- uc_edit_user
+admin -- uc_add_user
+admin -- uc_del_user
+admin -- uc_edit_user
 
 ' Связи Завуча
 zavuch -- uc_change_schedule
 uc_single_corr .> uc_change_schedule : "extend"\n(Выбран режим "изменить\nтолько на этот день")
 uc_curriculum_change .> uc_change_schedule : "extend"\n(Выбран режим "Изменить\nрасписание на год")
 
-zavuch -- uc_manage_class_users
-uc_manage_class_users <-- uc_add_to_class
-uc_manage_class_users <-- uc_del_from_class
-uc_manage_class_users <-- uc_change_user_class
+
+zavuch -- uc_add_to_class
+zavuch -- uc_del_from_class
+zavuch -- uc_change_user_class
 
 ' Связи Классного руководителя
 klass_ruk -- uc_view_own_class
