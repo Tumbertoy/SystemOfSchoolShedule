@@ -27,7 +27,7 @@ usecase "изменение\nшкольного расписания на год
 
 usecase "добавить\nпользователя в\nсостав класса" as uc_add_to_class
 usecase "удалить\nпользователя из\nсостава класса" as uc_del_from_class
-usecase "изменять класс\nпользователя" as uc_change_user_class
+usecase "редактировать класс\nпользователя" as uc_change_user_class
 
 ' Права для Классного руководителя
 usecase "посмотреть\nсостав своего\nкласса" as uc_view_own_class
