@@ -42,7 +42,7 @@
 ![Use-Case Диаграмма](docs/diagrams/use_case.png)
 
 ## 7. ER - Диаграмма
-![ER-ДИаграмма](docs/diagrams/ER%20-%20Диаграмма.jpg)
+![ER-ДИаграмма](docs/diagrams/ERD.jpg)
 
 ## 8. Алгоритмы работы (Блок-схемы)
 
