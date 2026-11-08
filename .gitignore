@@ -1,4 +1,7 @@
-../.venv/
+.venv/
+venv/
 .idea/
 .vscode/
-systemOfSchoolSchedule/database.db
+*.db
+__pycache__/
+*.pyc
